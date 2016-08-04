@@ -48,107 +48,7 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-
-	var GreeterMessage = React.createClass({
-		displayName: 'GreeterMessage',
-
-		getDefaultProps: function getDefaultProps() {
-			return {
-				message: "This is the default Message"
-			};
-		},
-		render: function render() {
-			var name = this.props.name;
-			var message = this.props.message;
-
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(
-					'h1',
-					null,
-					' Hello ',
-					name,
-					'!'
-				),
-				React.createElement(
-					'p',
-					null,
-					message
-				)
-			);
-		}
-	});
-
-	var GreeterForm = React.createClass({
-		displayName: 'GreeterForm',
-
-		onFormSubmit: function onFormSubmit(e) {
-			e.preventDefault();
-
-			var updates = {
-				name: this.refs.name.value,
-				message: this.refs.message.value
-			};
-
-			if (updates.name.length > 0) {
-				this.refs.name.value = '';
-				this.refs.message.value = '';
-				this.props.onNewName(updates);
-			}
-		},
-		render: function render() {
-			return React.createElement(
-				'form',
-				{ onSubmit: this.onFormSubmit },
-				React.createElement('input', { type: 'text', ref: 'name', placeholder: 'Name' }),
-				React.createElement('br', null),
-				React.createElement('textarea', { type: 'text', ref: 'message', placeholder: 'Message' }),
-				React.createElement('br', null),
-				React.createElement(
-					'button',
-					{ type: 'submit' },
-					'Submit'
-				)
-			);
-		}
-	});
-
-	var Greeter = React.createClass({
-		displayName: 'Greeter',
-
-		// Gets the default props if the variable being passed does not exist.
-		getDefaultProps: function getDefaultProps() {
-			return {
-				name: "React",
-				message: "There is no message here"
-			};
-		},
-		//Needs to pass props into here in order to make it an updateable state.
-		getInitialState: function getInitialState() {
-			return {
-				name: this.props.name
-			};
-		},
-		handleNewName: function handleNewName(updates) {
-			this.setState({
-				name: updates.name,
-				message: updates.message
-			});
-		},
-		// Renders the HTML in jsx
-		render: function render() {
-			var name = this.state.name; //Updateable by the user.
-			var message = this.state.message; //Props can not be updated by ther user.
-
-			return React.createElement(
-				'div',
-				null,
-				React.createElement(GreeterMessage, { name: name, message: message }),
-				React.createElement(GreeterForm, { onNewName: this.handleNewName })
-			);
-		}
-	});
+	var Greeter = __webpack_require__(159);
 
 	var firstName = 'Dave';
 	var message = 'This is a message';
@@ -19796,6 +19696,139 @@
 
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var GreeterMessage = __webpack_require__(160);
+	var GreeterForm = __webpack_require__(161);
+
+	var Greeter = React.createClass({
+		displayName: 'Greeter',
+
+		// Gets the default props if the variable being passed does not exist.
+		getDefaultProps: function getDefaultProps() {
+			return {
+				name: "React",
+				message: "There is no message here"
+			};
+		},
+		//Needs to pass props into here in order to make it an updateable state.
+		getInitialState: function getInitialState() {
+			return {
+				name: this.props.name
+			};
+		},
+		handleNewName: function handleNewName(updates) {
+			this.setState({
+				name: updates.name,
+				message: updates.message
+			});
+		},
+		// Renders the HTML in jsx
+		render: function render() {
+			var name = this.state.name; //Updateable by the user.
+			var message = this.state.message; //Props can not be updated by ther user.
+
+			return React.createElement(
+				'div',
+				null,
+				React.createElement(GreeterMessage, { name: name, message: message }),
+				React.createElement(GreeterForm, { onNewName: this.handleNewName })
+			);
+		}
+	});
+
+	module.exports = Greeter;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+
+	var GreeterMessage = React.createClass({
+		displayName: "GreeterMessage",
+
+		getDefaultProps: function getDefaultProps() {
+			return {
+				message: "This is the default Message"
+			};
+		},
+		render: function render() {
+			var name = this.props.name;
+			var message = this.props.message;
+
+			return React.createElement(
+				"div",
+				null,
+				React.createElement(
+					"h1",
+					null,
+					" Hello ",
+					name,
+					"!"
+				),
+				React.createElement(
+					"p",
+					null,
+					message
+				)
+			);
+		}
+	});
+
+	module.exports = GreeterMessage;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+
+	var GreeterForm = React.createClass({
+		displayName: 'GreeterForm',
+
+		onFormSubmit: function onFormSubmit(e) {
+			e.preventDefault();
+
+			var updates = {
+				name: this.refs.name.value,
+				message: this.refs.message.value
+			};
+
+			if (updates.name.length > 0) {
+				this.refs.name.value = '';
+				this.refs.message.value = '';
+				this.props.onNewName(updates);
+			}
+		},
+		render: function render() {
+			return React.createElement(
+				'form',
+				{ onSubmit: this.onFormSubmit },
+				React.createElement('input', { type: 'text', ref: 'name', placeholder: 'Name' }),
+				React.createElement('br', null),
+				React.createElement('textarea', { type: 'text', ref: 'message', placeholder: 'Message' }),
+				React.createElement('br', null),
+				React.createElement(
+					'button',
+					{ type: 'submit' },
+					'Submit'
+				)
+			);
+		}
+	});
+
+	module.exports = GreeterForm;
 
 /***/ }
 /******/ ]);
